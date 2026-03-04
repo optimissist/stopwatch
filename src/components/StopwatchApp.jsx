@@ -14,7 +14,7 @@ function StopwatchApp() {
 
     function pause() {
         setIsRunning(false);
-        inputRef.current.value = ""
+        clearInterval(intervalRef.current);
     }
 
     function reset() {
@@ -25,10 +25,7 @@ function StopwatchApp() {
     
         useEffect(() => {
         if (isRunning) {
-            const interval = setInterval(() => {
-                setTime(time => time + 10);
-            }, 10);
-            return () => clearInterval(interval);
+            return () => clearInterval(intervalRef);
         }
     }, [isRunning]);
 
